@@ -1,0 +1,37 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": { "major": 3, "minor": 23, "patch": 0 },
+    "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/build/${presetName}"
+        },
+        {
+            "name": "vs2022",
+            "inherits": "base",
+            "displayName": "Visual Studio 2022 (x64, Release)",
+            "generator": "Visual Studio 17 2022",
+            "architecture": { "value": "x64", "strategy": "set" }
+        },
+        {
+            "name": "vs2026",
+            "inherits": "base",
+            "displayName": "Visual Studio 2026 (x64, Release)",
+            "generator": "Visual Studio 18 2026",
+            "architecture": { "value": "x64", "strategy": "set" }
+        },
+        {
+            "name": "ninja",
+            "inherits": "base",
+            "displayName": "Ninja (Release; requires VS developer environment)",
+            "generator": "Ninja",
+            "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+        }
+    ],
+    "buildPresets": [
+        { "name": "vs2022", "configurePreset": "vs2022", "configuration": "Release" },
+        { "name": "vs2026", "configurePreset": "vs2026", "configuration": "Release" },
+        { "name": "ninja", "configurePreset": "ninja" }
+    ]
+}
